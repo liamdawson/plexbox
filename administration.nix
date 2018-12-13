@@ -10,7 +10,7 @@
 
   # sudo via SSH keys? Yes please!
   security.sudo.extraconfig = ''
-    auth sufficient ${pkgs.pam_ssh_agent_auth}/libexec/pam_ssh_agent_auth.so file=/etc/ssh/authorized_keys.d/%u"}
+    auth sufficient ${pkgs.pam_ssh_agent_auth}/libexec/pam_ssh_agent_auth.so file=/etc/ssh/authorized_keys.d/%u"
   '';
 
   users.mutableUsers = false;
