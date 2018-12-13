@@ -32,11 +32,11 @@
         writeable = "yes";
         "read only" = "no";
         "guest ok" = "yes";
-        "create mask" = "0664";
-        "directory mask" = "2775";
-        "directory security mask" = "2775";
-        "force directory mode" = "2775";
-        "force directory security mode" = "2775";
+        "create mask" = "0666";
+        "directory mask" = "2777";
+        "directory security mask" = "2777";
+        "force directory mode" = "2777";
+        "force directory security mode" = "2777";
         "force user" = "nobody";
         "force group" = "users";
       };
