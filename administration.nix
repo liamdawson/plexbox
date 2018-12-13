@@ -9,7 +9,7 @@
     [ pam_ssh_agent_auth ];
 
   # sudo via SSH keys? Yes please!
-  security.sudo.extraconfig = ''
+  security.sudo.extraConfig = ''
     auth sufficient ${pkgs.pam_ssh_agent_auth}/libexec/pam_ssh_agent_auth.so file=/etc/ssh/authorized_keys.d/%u"}
   '';
 
