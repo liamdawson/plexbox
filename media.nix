@@ -12,7 +12,6 @@
 
   services.plex = {
     enable = true;
-    group = "users";
     openFirewall = true;
     package = pkgs.unstable.plex;
   };
