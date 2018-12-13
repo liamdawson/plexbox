@@ -16,7 +16,7 @@
     ];
 
   environment.systemPackages = with pkgs;
-    [ git curl ];
+    [ git curl btrfs-progs ];
 
   time.timeZone = "Australia/Melbourne";
 
