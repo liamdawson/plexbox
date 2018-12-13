@@ -1,0 +1,24 @@
+{ config, pkgs, ... }:
+
+{
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  users.mutableUsers = false;
+
+  users.extraUsers.plexadmin = {
+    isNormalUser = true;
+    name = "plexadmin";
+    extraGroups = ["wheel"];
+    uid = 2000;
+    password = TODO
+  };
+
+  # disable root login
+  users.extraUsers.root.hashedPassword = "!";
+
+  # don't suspend on lid shut
+  services.logind.lidSwitch = "lock";
+  services.logind.lidSwitchDocked = "ignore";
+}
