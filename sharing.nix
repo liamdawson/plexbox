@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs;
-    [ letsencrypt ];
-
   services.samba = {
     enable = true;
 
@@ -20,9 +17,9 @@
 
       server signing = mandatory
       client signing = mandatory
-      server min protocol = SMB3
+      server min protocol = SMB2
       server max protocol = SMB3
-      client min protocol = SMB3
+      client min protocol = SMB2
       client max protocol = SMB3
     '';
     shares = {
