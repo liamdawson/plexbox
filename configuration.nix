@@ -13,6 +13,7 @@
       ./sharing.nix
       ./administration.nix
       ./media.nix
+      ./web.nix
     ];
 
   environment.systemPackages = with pkgs;
