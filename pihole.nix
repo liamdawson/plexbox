@@ -5,8 +5,8 @@ let file = pkgs.writeText "run-pihole" ''#!/usr/bin/env bash
 set -e
 set -u
 
-IP_LOOKUP="$(${pkgs.ip}/bin/ip route get 8.8.8.8 | ${pkgs.awk}/bin/awk '{ print $NF; exit }')"  # May not work for VPN / tun0
-IPv6_LOOKUP="$(${pkgs.ip}/bin/ip -6 route get 2001:4860:4860::8888 | ${pkgs.awk}/bin/awk '{for(i=1;i<=NF;i++) if ($i=="src") print $(i+1)}')"  # May not work for VPN / tun0
+IP_LOOKUP="$(${pkgs.iproute2}/bin/ip route get 8.8.8.8 | ${pkgs.gawk}/bin/awk '{ print $NF; exit }')"  # May not work for VPN / tun0
+IPv6_LOOKUP="$(${pkgs.iproute2}/bin/ip -6 route get 2001:4860:4860::8888 | ${pkgs.gawk}/bin/awk '{for(i=1;i<=NF;i++) if ($i=="src") print $(i+1)}')"  # May not work for VPN / tun0
 IP="$\{IP:-$IP_LOOKUP}"  # use $IP, if set, otherwise IP_LOOKUP
 IPv6="$\{IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
 
