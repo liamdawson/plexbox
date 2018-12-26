@@ -16,7 +16,7 @@
   users.extraUsers.plexadmin = {
     isNormalUser = true;
     name = "plexadmin";
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "rkt" "systemd-journal" ];
     uid = 2000;
     # straight from github keys
     openssh.authorizedKeys.keys = [''
