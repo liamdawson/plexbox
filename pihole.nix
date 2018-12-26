@@ -31,7 +31,7 @@ in {
       Slice = "machine.slice";
       KillMode = "mixed";
       Restart = "always";
-      ExecStart = "bash ${file}";
+      ExecStart = "/usr/bin/env bash ${file}";
     };
   };
 }
