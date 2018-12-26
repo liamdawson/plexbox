@@ -12,14 +12,14 @@ let file = pkgs.writeText "run-pihole" ''\
   }
 
 
-  IP="${IP:-lookup_ipv4}"
+  IP="''${IP:-lookup_ipv4}"
 
   # ensure the data directories exist
   "${pkgs.coreutils}/bin/mkdir" -p /var/lib/pihole/{config,dnsmasq.d}
 
 
   ${pkgs.rkt}/bin/rkt run --insecure-options=image \
-  --set-env=ServerIP="$IP" \
+  --set-env=ServerIP="''${IP}" \
   --set-env=TZ="Australia/Melbourne" \
   --set-env=WEBPASSWORD="initialWebPassword" \
   --set-env=DNS1="1.1.1.1" \
