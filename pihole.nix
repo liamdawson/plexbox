@@ -11,8 +11,8 @@ IP="$\{IP:-$IP_LOOKUP}"  # use $IP, if set, otherwise IP_LOOKUP
 IPv6="$\{IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
 
 # ensure the data directories exist
-[[ -d "/var/lib/pihole" ]] || ${pkg.coreutils}/bin/mkdir" /var/lib/pihole
-${pkg.coreutils}/bin/mkdir" /var/lib/pihole/{config,dnsmasq.d} || "${pkgs.coreutils}/bin/true"
+[[ -d "/var/lib/pihole" ]] || ${pkgs.coreutils}/bin/mkdir" /var/lib/pihole
+${pkgs.coreutils}/bin/mkdir" /var/lib/pihole/{config,dnsmasq.d} || "${pkgs.coreutils}/bin/true"
 
 
 ${pkgs.rkt}/bin/rkt run --insecure-options=image \
