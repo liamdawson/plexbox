@@ -22,16 +22,16 @@ ${pkgs.rkt}/bin/rkt run --insecure-options=image \
 --dns=127.0.0.1 \
 --dns=1.1.1.1 \
 --dns=1.0.0.1 \
-docker://pihole/pihole'';
+docker://pihole/pihole:4.1'';
 in {
-  systemd.services."rkt-pi-hole" = {
+  systemd.services."rkt-pihole" = {
     description = "pi-hole (via rkt)";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Slice = "machine.slice";
       KillMode = "mixed";
       Restart = "always";
-      ExecStart = file;
+      ExecStart = "bash ${file}";
     };
   };
 }
