@@ -10,6 +10,11 @@ IPv6_LOOKUP="$(${pkgs.iproute}/bin/ip -6 route get 2001:4860:4860::8888 | ${pkgs
 IP="$\{IP:-$IP_LOOKUP}"  # use $IP, if set, otherwise IP_LOOKUP
 IPv6="$\{IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
 
+# ensure the data directories exist
+[[ -d "/var/lib/pihole" ]] || ${pkg.coreutils}/bin/mkdir" /var/lib/pihole
+${pkg.coreutils}/bin/mkdir" /var/lib/pihole/{config,dnsmasq.d} || "${pkgs.coreutils}/bin/true"
+
+
 ${pkgs.rkt}/bin/rkt run --insecure-options=image \
 --set-env=ServerIP="$\{IP}" \
 --set-env=ServerIPv6="$\{IPv6}" \
