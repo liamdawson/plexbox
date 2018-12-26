@@ -37,7 +37,6 @@ let file = pkgs.writeText "run-pihole" ''\
   --dns=8.8.4.4 \
   docker://pihole/pihole:4.1 \
   --name=pihole \
-  --caps-retain=CAP_NET_ADMIN \
   --mount=volume=volume-etc-pihole,target=/etc/pihole \
   --mount=volume=volume-etc-dnsmasqd,target=/etc/dnsmasq.d'';
 in {
