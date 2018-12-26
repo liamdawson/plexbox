@@ -21,7 +21,6 @@ let file = pkgs.writeText "run-pihole" ''\
 
 
   ${pkgs.rkt}/bin/rkt run --insecure-options=image \
-  --caps-retain=NET_ADMIN \
   --name=pihole \
   --set-env=ServerIP="''${IP}" \
   --set-env=TZ="Australia/Melbourne" \
@@ -38,6 +37,7 @@ let file = pkgs.writeText "run-pihole" ''\
   --dns=8.8.8.8 \
   --dns=8.8.4.4 \
   docker://pihole/pihole:4.1 \
+  --caps-retain=CAP_NET_ADMIN \
   --mount=volume=volume-etc-pihole,target=/etc/pihole \
   --mount=volume=volume-etc-dnsmasqd,target=/etc/dnsmasq.d'';
 in {
