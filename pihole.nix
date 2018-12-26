@@ -37,7 +37,7 @@ let file = pkgs.writeText "run-pihole" ''\
   docker://pihole/pihole:4.1'';
 in {
   systemd.services."rkt-pihole" = {
-    description = "pi-hole (via rkt)";
+    description = "Pi-hole";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Slice = "machine.slice";
@@ -46,4 +46,7 @@ in {
       ExecStart = "${pkgs.bash}/bin/bash ${file}";
     };
   };
+
+  networking.hosts."127.0.0.1" = [ "pi.hole" ];
+  networking.hosts."::1" = [ "pi.hole" ];
 }
