@@ -24,8 +24,8 @@ let file = pkgs.writeText "run-pihole" ''\
   --set-env=ServerIP="''${IP}" \
   --set-env=TZ="Australia/Melbourne" \
   --set-env=WEBPASSWORD="initialWebPassword" \
-  --set-env=DNS1="1.1.1.1" \
-  --set-env=DNS2="1.0.0.1" \
+  --set-env=DNS1="8.8.8.8" \
+  --set-env=DNS2="8.8.4.4" \
   --set-env=IPv6="False" \
   --volume=volume-etc-pihole,kind=host,source=/var/lib/pihole/config,readOnly=false \
   --volume=volume-etc-dnsmasqd,kind=host,source=/var/lib/pihole/dnsmasq.d,readOnly=false \
@@ -33,8 +33,8 @@ let file = pkgs.writeText "run-pihole" ''\
   --port=80-tcp:4567 \
   --port=443-tcp:4568 \
   --dns=127.0.0.1 \
-  --dns=1.1.1.1 \
-  --dns=1.0.0.1 \
+  --dns=8.8.8.8 \
+  --dns=8.8.4.4 \
   docker://pihole/pihole:4.1 \
   --mount=volume=volume-etc-pihole,target=/etc/pihole \
   --mount=volume=volume-etc-dnsmasqd,target=/etc/dnsmasq.d'';
