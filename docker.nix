@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
-  virtualisation.docker.enable = true;
-
-  environment.systemPackages = with pkgs;
-    [ dockerTools ];
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
 }

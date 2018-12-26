@@ -15,7 +15,6 @@
       ./media.nix
       ./web.nix
       ./docker.nix
-      ./pihole.nix
     ];
 
   environment.systemPackages = with pkgs;
