@@ -12,7 +12,9 @@ let file = pkgs.writeText "run-pihole" ''\
   }
 
 
-  IP="''${IP:-lookup_ipv4}"
+  IP="''${IP:-$(lookup_ipv4)}"
+  echo "Server IP: ${IP}"
+
 
   # ensure the data directories exist
   "${pkgs.coreutils}/bin/mkdir" -p /var/lib/pihole/{config,dnsmasq.d}
