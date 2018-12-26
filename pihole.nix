@@ -21,6 +21,7 @@ let file = pkgs.writeText "run-pihole" ''\
 
 
   ${pkgs.rkt}/bin/rkt run --insecure-options=image \
+  --name=pihole \
   --set-env=ServerIP="''${IP}" \
   --set-env=TZ="Australia/Melbourne" \
   --set-env=WEBPASSWORD="initialWebPassword" \
