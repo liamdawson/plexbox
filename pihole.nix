@@ -7,8 +7,8 @@ set -u
 
 IP_LOOKUP="$(${pkgs.iproute}/bin/ip route get 8.8.8.8 | ${pkgs.gawk}/bin/awk '{ print $NF; exit }')"  # May not work for VPN / tun0
 IPv6_LOOKUP="$(${pkgs.iproute}/bin/ip -6 route get 2001:4860:4860::8888 | ${pkgs.gawk}/bin/awk '{for(i=1;i<=NF;i++) if ($i=="src") print $(i+1)}')"  # May not work for VPN / tun0
-IP="$\{IP:-$IP_LOOKUP}"  # use $IP, if set, otherwise IP_LOOKUP
-IPv6="$\{IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
+IP="${IP:-$IP_LOOKUP}"  # use $IP, if set, otherwise IP_LOOKUP
+IPv6="${IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
 
 # ensure the data directories exist
 [[ -d "/var/lib/pihole" ]] || "${pkgs.coreutils}/bin/mkdir" /var/lib/pihole
@@ -16,8 +16,8 @@ IPv6="$\{IPv6:-$IPv6_LOOKUP}"  # use $IPv6, if set, otherwise IP_LOOKUP
 
 
 ${pkgs.rkt}/bin/rkt run --insecure-options=image \
---set-env=ServerIP="$\{IP}" \
---set-env=ServerIPv6="$\{IPv6}" \
+--set-env=ServerIP="$IP" \
+--set-env=ServerIPv6="$IPv6" \
 --set-env=TZ="Australia/Melbourne" \
 --set-env=WEBPASSWORD="initialWebPassword" \
 --set-env=DNS1="1.1.1.1" \
