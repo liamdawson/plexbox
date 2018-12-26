@@ -33,7 +33,7 @@ in {
       Slice = "machine.slice";
       KillMode = "mixed";
       Restart = "always";
-      ExecStart = "/usr/bin/env bash ${file}";
+      ExecStart = "${pkgs.bash}/bin/bash ${file}";
     };
   };
 }
