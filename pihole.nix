@@ -26,6 +26,7 @@ let file = pkgs.writeText "run-pihole" ''\
   --set-env=WEBPASSWORD="initialWebPassword" \
   --set-env=DNS1="1.1.1.1" \
   --set-env=DNS2="1.0.0.1" \
+  --set-env=IPv6="False" \
   --volume=volume-etc-pihole,kind=host,source=/var/lib/pihole/config,readOnly=false \
   --volume=volume-etc-dnsmasqd,kind=host,source=/var/lib/pihole/dnsmasq.d,readOnly=false \
   --port=53-tcp:53 --port=53-udp:53 \
