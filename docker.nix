@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
-  virtualisation.docker = {
+  virtualisation.rkt = {
     enable = true;
-    autoPrune.enable = true;
   };
 }
