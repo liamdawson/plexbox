@@ -35,9 +35,9 @@ let file = pkgs.writeText "run-pihole" ''\
   --dns=127.0.0.1 \
   --dns=1.1.1.1 \
   --dns=1.0.0.1 \
-  --mount volume=volume-etc-pihole,target=/etc/pihole \
-  --mount volume=volume-etc-dnsmasqd,target=/etc/dnsmasq.d \
-  docker://pihole/pihole:4.1'';
+  docker://pihole/pihole:4.1 \
+  --mount=volume=volume-etc-pihole,target=/etc/pihole \
+  --mount=volume=volume-etc-dnsmasqd,target=/etc/dnsmasq.d'';
 in {
   systemd.services."rkt-pihole" = {
     description = "Pi-hole";
