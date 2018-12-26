@@ -15,13 +15,15 @@ ${pkgs.rkt}/bin/rkt run --insecure-options=image \
 --set-env=DNS1="1.1.1.1" \
 --set-env=DNS2="1.0.0.1" \
 --volume=volume-etc-pihole,kind=host,source=/var/lib/pihole/config,readOnly=false \
---volume=volume-etc-dnsmasq.d,kind=host,source=/var/lib/pihole/dnsmasq.d,readOnly=false \
+--volume=volume-etc-dnsmasqd,kind=host,source=/var/lib/pihole/dnsmasq.d,readOnly=false \
 --port=53-tcp:53 --port=53-udp:53 \
 --port=80-tcp:4567 \
 --port=443-tcp:4568 \
 --dns=127.0.0.1 \
 --dns=1.1.1.1 \
 --dns=1.0.0.1 \
+--mount volume=volume-etc-pihole,target=/etc/pihole \
+--mount volume=volume-etc-dnsmasq,target=/etc/dnsmasq.d \
 docker://pihole/pihole:4.1'';
 in {
   systemd.services."rkt-pihole" = {
