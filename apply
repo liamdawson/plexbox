@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+(
+  set -e
+  set -u
+
+  . functions
+
+  # never hurts to be up to date
+
+  yum update -y
+
+  # things I expect to have at my fingertips
+
+  command-exists vim || yum install -y vim
+  command-exists git || yum install -y git
+
+  for file in "${SCRIPT_DIR}/partials"/*.sh
+  do
+    echo "Applying $file..."
+    bash -eu "$file"
+  done 
+)
