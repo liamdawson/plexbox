@@ -14,5 +14,6 @@
   #shellcheck disable=SC2024
   sudo tee /etc/samba/smb.conf >/dev/null < "${_BASE_CONFIG_DIR}/files/smb.conf"
 
+  sudo systemctl enable smb
   sudo systemctl restart smb
 )
