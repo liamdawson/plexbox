@@ -26,6 +26,9 @@
 
   firewallcmd --set-default-zone=home
   firewallcmd --zone=home --add-service=ssh
+  firewallcmd --zone=home --add-service=http
+  firewallcmd --zone=home --add-service=https
+  firewallcmd --zone=home --add-service=dns
   firewallcmd --zone=home --add-service=plex
 
   echo ' - configuring firewall permanently...'
