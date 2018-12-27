@@ -10,8 +10,9 @@
     sudo chown nobody:users /media/data
   fi
 
-  if ! sudo grep -qe 'PBX_MEDIA' /etc/fstab >/dev/null
+  if ! grep -qe 'PBX_MEDIA' /etc/fstab >/dev/null
   then
     echo "/dev/disk/by-partlabel/PBX_MEDIA /media/data    btrfs   defaults       0 0" | sudo tee -a /etc/fstab >/dev/null
+    sudo mount -a
   fi
 )
