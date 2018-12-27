@@ -15,6 +15,6 @@
 
   echo " - setting plexadmin groups"
 
-  sudo useradd -aG users plexadmin
-  sudo useradd -aG adm plexadmin
+  sudo usermod -aG users plexadmin
+  sudo usermod -aG adm plexadmin
 )
