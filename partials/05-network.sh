@@ -30,6 +30,7 @@
   firewallcmd --zone=home --add-service=https
   firewallcmd --zone=home --add-service=dns
   firewallcmd --zone=home --add-service=plex
+  firewallcmd --zone=home --add-service=samba
 
   echo ' - configuring firewall permanently...'
   firewallcmd --runtime-to-permanent
