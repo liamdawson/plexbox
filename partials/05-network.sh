@@ -9,11 +9,19 @@ echo ' - adding firewall service definitions'
 sudo cp "${_BASE_CONFIG_DIR}/files/plex-firewall-service.xml" /etc/firewalld/services/plex.xml
 
 
+function firewallcmd() {
+  #shellcheck disable=SC2068
+  sudo firewall-cmd -q $@ || { _STATUS="$?"; [[ $? -eq 11 ]] || return $_STATUS; }
+  # 11 means already set
+}
+
 echo ' - configuring firewall transiently...'
-sudo firewall-cmd --set-default-zone=home
-sudo firewall-cmd --zone=home --add-service=ssh
-sudo firewall-cmd --zone=home --add-service=plex
+firewallcmd --reload
+
+firewallcmd --set-default-zone=home
+firewallcmd --zone=home --add-service=ssh
+firewallcmd --zone=home --add-service=plex
 
 
 echo ' - configuring firewall permanently...'
-sudo firewall-cmd --runtime-to-permanent
+firewallcmd --runtime-to-permanent
