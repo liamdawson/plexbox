@@ -15,6 +15,7 @@
 
   command-exists vim || sudo yum install -y vim
   command-exists git || sudo yum install -y git
+  command-exists semanage || sudo yum install -y policycoreutils-python
 
   for file in "${_BASE_CONFIG_DIR}/partials"/*.sh
   do

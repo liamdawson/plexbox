@@ -7,7 +7,7 @@
   sudo yum install -y samba samba-client samba-common
 
   echo ' - setting SELinux permissions for shares'
-  sudo chcon -t samba_share_t /media/data/
+  sudo semanage fcontext -a -t samba_share_t "/media/data(/.*)?"
   sudo restorecon -R /media/data
 
   echo ' - setting samba configuration'
