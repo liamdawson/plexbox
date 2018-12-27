@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+(
+  set -e
+  set -u
+
+  git pull
+  ./apply
+)
