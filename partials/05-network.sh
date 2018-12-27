@@ -1,27 +1,33 @@
 #!/usr/bin/env bash
 
-echo ' - setting hostname...'
+(
+  set -e
+  set -u
 
-echo 'plexbox.localdomain' | sudo tee /etc/hostname >/dev/null
-sudo hostname -F /etc/hostname
+  echo ' - setting hostname...'
 
-echo ' - adding firewall service definitions'
-sudo cp "${_BASE_CONFIG_DIR}/files/plex-firewall-service.xml" /etc/firewalld/services/plex.xml
+  echo 'plexbox.localdomain' | sudo tee /etc/hostname >/dev/null
+  sudo hostname -F /etc/hostname
 
+  echo ' - adding firewall service definitions'
+  sudo cp "${_BASE_CONFIG_DIR}/files/plex-firewall-service.xml" /etc/firewalld/services/plex.xml
 
-function firewallcmd() {
-  #shellcheck disable=SC2068
-  sudo firewall-cmd -q $@ || { _STATUS="$?"; [[ $? -eq 11 ]] || return $_STATUS; }
-  # 11 means already set
-}
+  function firewallcmd() {
+    #shellcheck disable=SC2068
+    sudo firewall-cmd -q $@ || {
+      _STATUS="$?"
+      [[ $? -eq 11 ]] || return $_STATUS
+    }
+    # 11 means already set
+  }
 
-echo ' - configuring firewall transiently...'
-firewallcmd --reload
+  echo ' - configuring firewall transiently...'
+  firewallcmd --reload
 
-firewallcmd --set-default-zone=home
-firewallcmd --zone=home --add-service=ssh
-firewallcmd --zone=home --add-service=plex
+  firewallcmd --set-default-zone=home
+  firewallcmd --zone=home --add-service=ssh
+  firewallcmd --zone=home --add-service=plex
 
-
-echo ' - configuring firewall permanently...'
-firewallcmd --runtime-to-permanent
+  echo ' - configuring firewall permanently...'
+  firewallcmd --runtime-to-permanent
+)
