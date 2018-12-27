@@ -4,6 +4,7 @@
   set -e
   set -u
 
+  export _BASE_CONFIG_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
   . functions
 
   # never hurts to be up to date
@@ -15,7 +16,7 @@
   command-exists vim || sudo yum install -y vim
   command-exists git || sudo yum install -y git
 
-  for file in "./partials"/*.sh
+  for file in "${_BASE_CONFIG_DIR}/partials"/*.sh
   do
     echo "Applying $file..."
     bash -eu "$file"

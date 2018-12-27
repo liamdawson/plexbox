@@ -5,20 +5,15 @@ echo ' - setting hostname...'
 echo 'plexbox.localdomain' | sudo tee /etc/hostname >/dev/null
 sudo hostname -F /etc/hostname
 
-declare -a FIREWALL_RULES=(
-  "firewall-cmd --set-default-zone=home"
-)
+echo ' - adding firewall service definitions'
+sudo cp "${_BASE_CONFIG_DIR}/files/plex-firewall-service.xml" /etc/firewalld/services/plex.xml
+
 
 echo ' - configuring firewall transiently...'
-for rule in "${FIREWALL_RULES[@]}"
-do
-  # shellcheck disable=SC2086
-  sudo $rule
-done
+sudo firewall-cmd --set-default-zone=home
+sudo firewall-cmd --zone=home --add-service=ssh
+sudo firewall-cmd --zone=home --add-service=plex
+
 
 echo ' - configuring firewall permanently...'
-for rule in "${FIREWALL_RULES[@]}"
-do
-  # shellcheck disable=SC2086
-  sudo $rule --permanent
-done
+sudo firewall-cmd --runtime-to-permanent
