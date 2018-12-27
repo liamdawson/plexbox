@@ -15,7 +15,7 @@
   command-exists vim || sudo yum install -y vim
   command-exists git || sudo yum install -y git
 
-  for file in "${SCRIPT_DIR}/partials"/*.sh
+  for file in "./partials"/*.sh
   do
     echo "Applying $file..."
     bash -eu "$file"
