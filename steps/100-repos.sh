@@ -3,6 +3,6 @@
 (
   set -eu
 
-  sudo add-apt-repository ppa:team-xbmc/ppa
+  sudo add-apt-repository -y ppa:team-xbmc/ppa
 )
 
