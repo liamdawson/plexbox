@@ -13,4 +13,6 @@
   sudo yum localinstall --nogpgcheck -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm
 
   sudo yum update
+  sudo yum install -y rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted
+  sudo yum update
 )
