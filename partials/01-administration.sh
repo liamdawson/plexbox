@@ -13,6 +13,10 @@
   #shellcheck disable=SC2024
   sudo tee /etc/sudoers.d/01-ssh-sock-env >/dev/null <"${_BASE_CONFIG_DIR}/files/sudoers-ssh-sock"
 
+  echo " - disabling ssh login via password"
+  #shellcheck disable=SC2024
+  sudo tee /etc/ssh/sshd_config >/dev/null <"${_BASE_CONFIG_DIR}/files/sshd_config"
+
   echo " - setting plexadmin groups"
 
   sudo usermod -aG users plexadmin
