@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<service>
-  <short>Kodi Media Server</short>
-  <description>Ports for the Kodi Media Server.</description>
-  <port protocol="tcp" port="8080"/>
-</service>
