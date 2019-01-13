@@ -6,7 +6,7 @@
 
   if ! id 'kodi' >/dev/null 2>&1
   then
-    sudo useradd -D -p '$2a$07$AJ54EVMPMjzl7Dj9dGm0XuArAPaG3D/s6qZHjVmc2pdvxPHba9oty' kodi
+    echo '' | sudo useradd -p '$2a$07$AJ54EVMPMjzl7Dj9dGm0XuArAPaG3D/s6qZHjVmc2pdvxPHba9oty' kodi
     sudo usermod kodi -aG audio
     sudo usermod kodi -aG video
   fi
