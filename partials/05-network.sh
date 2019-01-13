@@ -11,6 +11,7 @@
 
   echo ' - adding firewall service definitions'
   sudo cp "${_BASE_CONFIG_DIR}/files/plex-firewall-service.xml" /etc/firewalld/services/plex.xml
+  sudo cp "${_BASE_CONFIG_DIR}/files/kodi-firewall-service.xml" /etc/firewalld/services/kodi.xml
 
   function firewallcmd() {
     #shellcheck disable=SC2068
@@ -30,6 +31,7 @@
   firewallcmd --zone=home --add-service=https
   firewallcmd --zone=home --add-service=dns
   firewallcmd --zone=home --add-service=plex
+  firewallcmd --zone=home --add-service=kodi
   firewallcmd --zone=home --add-service=samba
 
   echo ' - configuring firewall permanently...'
