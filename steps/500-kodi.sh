@@ -7,6 +7,4 @@
 
   id 'kodi' >/dev/null 2>&1 || echo '' | sudo useradd -m kodi
   sudo usermod -aG audio,video kodi
-
-  sudo systemctl disable --now kodi || true
 )
